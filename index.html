@@ -137,7 +137,10 @@
                 <i class="fab fa-linkedin-in text-2xl"></i>
             </a>
         </div>
-        <p class="font-jetbrains text-cyan-700 text-sm">Just some digital scribbles by Reza Afidan, ya heard?</p>
+        <p class="font-jetbrains text-cyan-700 text-sm">
+            <span class="inline md:hidden">Just some digital scribbles<br>by Reza Afidan, ya heard?</span>
+            <span class="hidden md:inline">Just some digital scribbles by Reza Afidan, ya heard?</span>
+        </p>
     </footer>
 
     <script>
@@ -145,12 +148,10 @@
             document.getElementById('anonymousForm').addEventListener('submit', function(e) {
                 e.preventDefault();
 
-                // Ganti dengan email tujuan Anda
                 const recipientEmail = 'TUJUAN_EMAIL_ANDA@contoh.com';
                 const message = document.getElementById('message').value;
 
                 if (!message.trim()) {
-                    // Menggunakan modal kustom sebagai ganti alert
                     showModal('Pesan tidak boleh kosong!');
                     return;
                 }
@@ -169,7 +170,7 @@
                 emailjs.send('service_6vty9m5', 'template_qd74snn', templateParams)
                     .then(function(response) {
                         console.log('SUCCESS!', response.status, response.text);
-                        showModal("It's a wrap, message got sent! ✨");
+                        showModal('<span class="inline md:hidden">It\'s a wrap,<br>message got sent! ✨</span><span class="hidden md:inline">It\'s a wrap, message got sent! ✨</span>');
 
                         submitButton.innerHTML = 'SENT! ✨';
                         document.getElementById('anonymousForm').reset();
@@ -191,9 +192,7 @@
                     });
             });
 
-            
             function showModal(message) {
-                
                 const modal = document.createElement('div');
                 modal.classList.add('fixed', 'inset-0', 'bg-black/50', 'flex', 'items-center', 'justify-center', 'z-[10000]');
                 modal.innerHTML = `

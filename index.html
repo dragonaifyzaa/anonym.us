@@ -11,7 +11,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
         (function() {
-            emailjs.init("LRnf8IzqDK7ZYD4FN");
+            emailjs.init("YOUR_PUBLIC_KEY");
         })();
     </script>
     <style>
@@ -63,11 +63,8 @@
 
     <div id="mouse-gradient" class="fixed inset-0"></div>
 
-    <div id="mouse-ring" 
-         class="w-[30px] h-[30px] border-4 border-white rounded-full"></div>
-
-    <div id="mouse-dot" 
-         class="w-[6px] h-[6px] bg-white rounded-full"></div>
+<div id="mouse-ring" class="w-[30px] h-[30px] border-4 border-white rounded-full md:block hidden"></div>
+<div id="mouse-dot" class="w-[6px] h-[6px] bg-white rounded-full md:block hidden"></div>
 
     <header class="absolute top-0 left-0 right-0 p-4 lg:pl-10 lg:pt-10 z-20">
         <div class="flex justify-start items-center">
@@ -205,16 +202,17 @@
             }
         
             const mouseGradient = document.getElementById('mouse-gradient');
-            let mouseX = 0; 
-            let mouseY = 0; 
-            let targetX = 0; 
-            let targetY = 0; 
+            let mouseX = window.innerWidth / 2;
+            let mouseY = window.innerHeight / 2;
+            let targetX = mouseX; 
+            let targetY = mouseY; 
             const speed = 0.08; 
 
             function updateFluidGradient() {
-                mouseX += (targetX - mouseX) * speed;
-                mouseY += (targetY - mouseY) * speed;
-
+                if (window.innerWidth >= 768) {
+                    mouseX += (targetX - mouseX) * speed;
+                    mouseY += (targetY - mouseY) * speed;
+                }
                 mouseGradient.style.background = `radial-gradient(circle at ${mouseX}px ${mouseY}px, rgba(139, 92, 246, 0.2) 0%, rgba(139, 92, 246, 0.1) 50%, rgba(139, 92, 246, 0) 90%)`;
 
                 requestAnimationFrame(updateFluidGradient);
@@ -224,49 +222,56 @@
             const mouseDot = document.getElementById('mouse-dot');
             const body = document.body;
 
-            let dotX = 0;
-            let dotY = 0;
-            let ringX = 0;
-            let ringY = 0;
+            let dotX = window.innerWidth / 2;
+            let dotY = window.innerHeight / 2;
+            let ringX = window.innerWidth / 2;
+            let ringY = window.innerHeight / 2;
             const dotSpeed = 0.2;
             const ringSpeed = 0.08;
 
             function updateCustomMouseTracker() {
-                const targetTrackerX = targetX;
-                const targetTrackerY = targetY;
+                if (window.innerWidth >= 768) {
+                    const targetTrackerX = targetX;
+                    const targetTrackerY = targetY;
 
-                dotX += (targetTrackerX - dotX) * dotSpeed;
-                dotY += (targetTrackerY - dotY) * dotSpeed;
+                    dotX += (targetTrackerX - dotX) * dotSpeed;
+                    dotY += (targetTrackerY - dotY) * dotSpeed;
 
-                ringX += (targetTrackerX - ringX) * ringSpeed;
-                ringY += (targetTrackerY - ringY) * ringSpeed;
-                
-                body.style.setProperty('--mouse-x', `${dotX}px`);
-                body.style.setProperty('--mouse-y', `${dotY}px`);
+                    ringX += (targetTrackerX - ringX) * ringSpeed;
+                    ringY += (targetTrackerY - ringY) * ringSpeed;
+                    
+                    body.style.setProperty('--mouse-x', `${dotX}px`);
+                    body.style.setProperty('--mouse-y', `${dotY}px`);
 
-                mouseDot.style.transform = `translate(${dotX}px, ${dotY}px) translate(-50%, -50%)`;
-                mouseRing.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+                    mouseDot.style.transform = `translate(${dotX}px, ${dotY}px) translate(-50%, -50%)`;
+                    mouseRing.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+                }
 
                 requestAnimationFrame(updateCustomMouseTracker);
             }
 
             window.addEventListener('mousemove', (e) => {
-                targetX = e.clientX;
-                targetY = e.clientY;
+                if (window.innerWidth >= 768) {
+                    targetX = e.clientX;
+                    targetY = e.clientY;
+                }
             });
             
             const interactiveElements = document.querySelectorAll('a, button, textarea');
 
             interactiveElements.forEach(element => {
                 element.addEventListener('mouseenter', () => {
-                    body.classList.add('hovering-cursor');
+                    if (window.innerWidth >= 768) {
+                        body.classList.add('hovering-cursor');
+                    }
                 });
 
                 element.addEventListener('mouseleave', () => {
-                    body.classList.remove('hovering-cursor');
+                    if (window.innerWidth >= 768) {
+                        body.classList.remove('hovering-cursor');
+                    }
                 });
             });
-
 
             requestAnimationFrame(updateFluidGradient);
             requestAnimationFrame(updateCustomMouseTracker);

@@ -1,4 +1,3 @@
-// script.js
 document.getElementById('anonymousForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
@@ -69,7 +68,7 @@ document.getElementById('anonymousForm').addEventListener('submit', function(e) 
     const speed = 0.08; 
 
     function updateFluidGradient() {
-        // Hanya update gradien jika layar lebih besar dari 768px (desktop)
+       
         if (window.innerWidth >= 768) {
             mouseX += (targetX - mouseX) * speed;
             mouseY += (targetY - mouseY) * speed;
@@ -79,7 +78,6 @@ document.getElementById('anonymousForm').addEventListener('submit', function(e) 
         requestAnimationFrame(updateFluidGradient);
     }
 
-    // Variabel untuk kursor kustom (lingkaran dan titik)
     const mouseRing = document.getElementById('mouse-ring'); 
     const mouseDot = document.getElementById('mouse-dot');
     const body = document.body;
@@ -92,7 +90,7 @@ document.getElementById('anonymousForm').addEventListener('submit', function(e) 
     const ringSpeed = 0.08;
 
     function updateCustomMouseTracker() {
-        // Hanya update kursor jika layar lebih besar dari 768px (desktop)
+        
         if (window.innerWidth >= 768) {
             const targetTrackerX = targetX;
             const targetTrackerY = targetY;
@@ -114,14 +112,14 @@ document.getElementById('anonymousForm').addEventListener('submit', function(e) 
     }
 
     window.addEventListener('mousemove', (e) => {
-        // Hanya update posisi target kursor jika layar lebih besar dari 768px
+        
         if (window.innerWidth >= 768) {
             targetX = e.clientX;
             targetY = e.clientY;
         }
     });
     
-    // Perubahan kursor saat hover pada elemen interaktif
+    
     const interactiveElements = document.querySelectorAll('a, button, textarea');
 
     interactiveElements.forEach(element => {
@@ -138,6 +136,6 @@ document.getElementById('anonymousForm').addEventListener('submit', function(e) 
         });
     });
 
-    // Jalankan animasi saat halaman dimuat
+   
     requestAnimationFrame(updateFluidGradient);
     requestAnimationFrame(updateCustomMouseTracker);

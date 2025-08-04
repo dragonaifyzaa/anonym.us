@@ -11,7 +11,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
         (function() {
-            emailjs.init("YOUR_PUBLIC_KEY");
+            emailjs.init("LRnf8IzqDK7ZYD4FN");
         })();
     </script>
     <style>
@@ -63,10 +63,13 @@
 
     <div id="mouse-gradient" class="fixed inset-0"></div>
 
-<div id="mouse-ring" class="w-[30px] h-[30px] border-4 border-white rounded-full md:block hidden"></div>
-<div id="mouse-dot" class="w-[6px] h-[6px] bg-white rounded-full md:block hidden"></div>
+    <div id="mouse-ring" 
+         class="w-[30px] h-[30px] border-4 border-white rounded-full md:block hidden"></div>
 
-    <header class="absolute top-0 left-0 right-0 p-4 lg:pl-10 lg:pt-10 z-20">
+    <div id="mouse-dot" 
+         class="w-[6px] h-[6px] bg-white rounded-full md:block hidden"></div>
+
+    <header class="p-4 lg:pl-10 lg:pt-10 z-20">
         <div class="flex justify-start items-center">
             <a href="https://bit.ly/aifyzaa-profie" class="font-jetbrains text-cyan-400 text-base sm:text-lg md:text-xl font-bold tracking-wide
                          bg-gray-800/70 backdrop-blur-sm px-3 py-1 rounded-lg">aifyzaa</a>
@@ -89,7 +92,7 @@
                             id="message" 
                             name="message" 
                             rows="6" 
-                            required
+                            
                             placeholder="spill the tea here..."
                             class="font-jetbrains w-full bg-black/50 text-cyan-400 rounded-lg p-4 
                                    border border-purple-500/30 placeholder-cyan-700
@@ -116,7 +119,7 @@
         </div>
     </div>
 
-    <footer class="w-full py-6 mt-auto text-center z-20">
+    <footer class="w-full pt-6 pb-10 mt-auto text-center z-20">
         <div class="flex justify-center space-x-6 mb-4">
             <a href="https://open.spotify.com/user/w5h27pldzen825c0l2cm4mldw" class="text-white hover:text-cyan-400 transition-colors duration-200">
                 <i class="fab fa-spotify text-2xl"></i>
@@ -149,7 +152,7 @@
                 const message = document.getElementById('message').value;
 
                 if (!message.trim()) {
-                    showModal('Pesan tidak boleh kosong!');
+                    showModal('<span class="md:hidden">Put somethin\' down,<br>for real!</span><span class="hidden md:inline">Put somethin\' down, for real!</span>');
                     return;
                 }
                 
@@ -178,7 +181,7 @@
                         }, 2000);
                     }, function(error) {
                         console.error('FAILED...', error);
-                        showModal('Gagal mengirim pesan. Silakan coba lagi.');
+                        showModal('<span class="md:hidden">Something\'s messed up,<br>try again!</span><span class="hidden md:inline">Something\'s messed up, try again!</span>');
                         
                         submitButton.innerHTML = 'FAILED TO SEND';
 

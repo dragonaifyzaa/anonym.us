@@ -1,0 +1,13 @@
+#custom-mouse-tracker {
+    position: fixed;
+    width: 25px; /* Ukuran lingkaran */
+    height: 25px; /* Ukuran lingkaran */
+    border: 2px solid rgba(139, 92, 246, 0.8); /* Warna dan ketebalan border (ungu) */
+    border-radius: 50%; /* Membuat bentuk lingkaran */
+    pointer-events: none; /* Penting: agar tidak mengganggu interaksi mouse */
+    transform: translate(-50%, -50%); /* Memposisikan tengah lingkaran tepat di kursor */
+    /* transition: transform 0.1s ease-out; /* Opsi: transisi untuk gerakan lebih halus */
+    z-index: 9999; /* Pastikan selalu di atas elemen lain */
+    opacity: 0.8; /* Opasitas lingkaran */
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.6); /* Sedikit glow */
+}

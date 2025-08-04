@@ -7,6 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
         (function() {
@@ -17,17 +18,8 @@
         .font-modern {
             font-family: 'Inter', sans-serif;
         }
-        
         .font-jetbrains {
             font-family: 'JetBrains Mono', monospace;
-        }
-        
-        .cyberpunk-gradient {
-            background: linear-gradient(135deg, #6b21a8 0%, #0891b2 100%);
-        }
-        
-        .cyberpunk-glow {
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
         }
         
         @keyframes pulse-border {
@@ -35,21 +27,56 @@
             50% { border-color: rgba(8, 145, 178, 0.7); }
             100% { border-color: rgba(139, 92, 246, 0.5); }
         }
-        
         .animate-pulse-border {
             animation: pulse-border 2s infinite;
         }
+
+        #mouse-ring, #mouse-dot {
+            mix-blend-mode: difference;
+            pointer-events: none;
+            position: fixed;
+            z-index: 9999;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        
+        .hovering-cursor #mouse-ring {
+            width: 0px !important;
+            height: 0px !important;
+            border-width: 0px !important;
+            opacity: 0 !important;
+        }
+        .hovering-cursor #mouse-dot {
+            width: 40px !important;
+            height: 40px !important;
+            border-radius: 50%;
+            background-color: white;
+        }
     </style>
 </head>
-<body class="font-modern bg-black min-h-screen">
-    <div class="relative min-h-screen flex items-center justify-center p-4 overflow-hidden">
-        <div class="absolute inset-0 cyberpunk-gradient opacity-20"></div>
-        
-        <div class="absolute inset-0" 
-             style="background-image: radial-gradient(circle at 1px 1px, rgba(139, 92, 246, 0.15) 1px, transparent 0);
-                    background-size: 40px 40px;">
-        </div>
+<body class="font-modern bg-gray-950 min-h-screen flex flex-col relative">
+    <div class="fixed inset-0 bg-gradient-to-br from-[#6b21a8] to-[#0891b2] opacity-20 z-0"></div>
+    
+    <div class="fixed inset-0 z-0" 
+         style="background-image: radial-gradient(circle, rgba(139, 92, 246, 0.4) 2px, transparent 2px);
+                background-size: 50px 50px;">
+    </div>
 
+    <div id="mouse-gradient" class="fixed inset-0"></div>
+
+    <div id="mouse-ring" 
+         class="w-[30px] h-[30px] border-4 border-white rounded-full"></div>
+
+    <div id="mouse-dot" 
+         class="w-[6px] h-[6px] bg-white rounded-full"></div>
+
+    <header class="absolute top-0 left-0 right-0 p-4 lg:pl-10 lg:pt-10 z-20">
+        <div class="flex justify-start items-center">
+            <a href="https://bit.ly/aifyzaa-profie" class="font-jetbrains text-cyan-400 text-base sm:text-lg md:text-xl font-bold tracking-wide
+                         bg-gray-800/70 backdrop-blur-sm px-3 py-1 rounded-lg">aifyzaa</a>
+        </div>
+    </header>
+
+    <div class="relative flex-grow flex items-center justify-center p-4 overflow-hidden z-10">
         <div class="w-full max-w-xl mx-auto relative z-10 p-4"> 
             <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r 
                        from-purple-600 to-cyan-500 text-center mb-2 leading-none tracking-tighter">
@@ -58,7 +85,7 @@
             <p class="font-jetbrains text-cyan-400 text-center mb-8 text-sm sm:text-base md:text-lg tracking-wider">SEND SECRET MESSAGES</p>
 
             <div class="bg-gray-900/80 backdrop-blur-xl rounded-2xl p-4 sm:p-6
-                        border border-purple-500/30 animate-pulse-border cyberpunk-glow">
+                        border border-purple-500/30 animate-pulse-border shadow-[0_0_20px_rgba(139,92,246,0.5)]">
                 <form id="anonymousForm" class="space-y-6">
                     <div class="space-y-2">
                         <textarea 
@@ -92,6 +119,159 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <footer class="w-full py-6 mt-auto text-center z-20">
+        <div class="flex justify-center space-x-6 mb-4">
+            <a href="https://open.spotify.com/user/w5h27pldzen825c0l2cm4mldw" class="text-white hover:text-cyan-400 transition-colors duration-200">
+                <i class="fab fa-spotify text-2xl"></i>
+            </a>
+            <a href="https://x.com/aifyzaa" class="text-white hover:text-cyan-400 transition-colors duration-200">
+                <i class="fab fa-twitter text-2xl"></i>
+            </a>
+            <a href="#" class="text-white hover:text-cyan-400 transition-colors duration-200">
+                <i class="fab fa-whatsapp text-2xl"></i>
+            </a>
+            <a href="https://instagram.com/rezaafidan" class="text-white hover:text-cyan-400 transition-colors duration-200">
+                <i class="fab fa-instagram text-2xl"></i>
+            </a>
+            <a href="https://linkedin.com/in/rezaafidan" class="text-white hover:text-cyan-400 transition-colors duration-200">
+                <i class="fab fa-linkedin-in text-2xl"></i>
+            </a>
+        </div>
+        <p class="font-jetbrains text-cyan-700 text-sm">Just some digital scribbles by Reza Afidan, ya heard?</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('anonymousForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Ganti dengan email tujuan Anda
+                const recipientEmail = 'TUJUAN_EMAIL_ANDA@contoh.com';
+                const message = document.getElementById('message').value;
+
+                if (!message.trim()) {
+                    // Menggunakan modal kustom sebagai ganti alert
+                    showModal('Pesan tidak boleh kosong!');
+                    return;
+                }
+                
+                const submitButton = this.querySelector('button[type="submit"]');
+                const originalButtonText = submitButton.innerHTML;
+                submitButton.disabled = true;
+                submitButton.innerHTML = 'SENDING...';
+
+                const templateParams = {
+                    from_name: 'ANONYM.us',
+                    to_email: recipientEmail,
+                    message: message     
+                };
+
+                emailjs.send('service_6vty9m5', 'template_qd74snn', templateParams)
+                    .then(function(response) {
+                        console.log('SUCCESS!', response.status, response.text);
+                        showModal("It's a wrap, message got sent! ✨");
+
+                        submitButton.innerHTML = 'SENT! ✨';
+                        document.getElementById('anonymousForm').reset();
+
+                        setTimeout(() => {
+                            submitButton.innerHTML = originalButtonText;
+                            submitButton.disabled = false;
+                        }, 2000);
+                    }, function(error) {
+                        console.error('FAILED...', error);
+                        showModal('Gagal mengirim pesan. Silakan coba lagi.');
+                        
+                        submitButton.innerHTML = 'FAILED TO SEND';
+
+                        setTimeout(() => {
+                            submitButton.innerHTML = originalButtonText;
+                            submitButton.disabled = false;
+                        }, 2000);
+                    });
+            });
+
+            
+            function showModal(message) {
+                
+                const modal = document.createElement('div');
+                modal.classList.add('fixed', 'inset-0', 'bg-black/50', 'flex', 'items-center', 'justify-center', 'z-[10000]');
+                modal.innerHTML = `
+                    <div class="bg-gray-800 p-6 rounded-lg text-white font-jetbrains text-center">
+                        <p>${message}</p>
+                        <button onclick="this.parentElement.parentElement.remove()" class="mt-4 px-4 py-2 bg-purple-600 rounded-lg">OK</button>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+            }
+        
+            const mouseGradient = document.getElementById('mouse-gradient');
+            let mouseX = 0; 
+            let mouseY = 0; 
+            let targetX = 0; 
+            let targetY = 0; 
+            const speed = 0.08; 
+
+            function updateFluidGradient() {
+                mouseX += (targetX - mouseX) * speed;
+                mouseY += (targetY - mouseY) * speed;
+
+                mouseGradient.style.background = `radial-gradient(circle at ${mouseX}px ${mouseY}px, rgba(139, 92, 246, 0.2) 0%, rgba(139, 92, 246, 0.1) 50%, rgba(139, 92, 246, 0) 90%)`;
+
+                requestAnimationFrame(updateFluidGradient);
+            }
+
+            const mouseRing = document.getElementById('mouse-ring'); 
+            const mouseDot = document.getElementById('mouse-dot');
+            const body = document.body;
+
+            let dotX = 0;
+            let dotY = 0;
+            let ringX = 0;
+            let ringY = 0;
+            const dotSpeed = 0.2;
+            const ringSpeed = 0.08;
+
+            function updateCustomMouseTracker() {
+                const targetTrackerX = targetX;
+                const targetTrackerY = targetY;
+
+                dotX += (targetTrackerX - dotX) * dotSpeed;
+                dotY += (targetTrackerY - dotY) * dotSpeed;
+
+                ringX += (targetTrackerX - ringX) * ringSpeed;
+                ringY += (targetTrackerY - ringY) * ringSpeed;
+                
+                body.style.setProperty('--mouse-x', `${dotX}px`);
+                body.style.setProperty('--mouse-y', `${dotY}px`);
+
+                mouseDot.style.transform = `translate(${dotX}px, ${dotY}px) translate(-50%, -50%)`;
+                mouseRing.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+
+                requestAnimationFrame(updateCustomMouseTracker);
+            }
+
+            window.addEventListener('mousemove', (e) => {
+                targetX = e.clientX;
+                targetY = e.clientY;
+            });
+            
+            const interactiveElements = document.querySelectorAll('a, button, textarea');
+
+            interactiveElements.forEach(element => {
+                element.addEventListener('mouseenter', () => {
+                    body.classList.add('hovering-cursor');
+                });
+
+                element.addEventListener('mouseleave', () => {
+                    body.classList.remove('hovering-cursor');
+                });
+            });
+
+
+            requestAnimationFrame(updateFluidGradient);
+            requestAnimationFrame(updateCustomMouseTracker);
+        });
+    </script>
 </body>
 </html>

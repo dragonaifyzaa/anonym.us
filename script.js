@@ -60,3 +60,4 @@ document.getElementById('anonymousForm').addEventListener('submit', function(e) 
             }, 2000);
         });
 });
+
